@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <h1>Travel Guide</h1>
+    <div>
+      <a href="index.html">Home</a>
+      <a href="package.html">Packages</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+
+  <!-- Header Section -->
+  <header>
+    <h2>Login to Your Account</h2>
+  </header>
+
+  <!-- Login Form -->
+  <section>
+    <form id="loginForm">
+      <input type="text" id="username" placeholder="Username" required>
+      <input type="password" id="password" placeholder="Password" required>
+      <button type="submit">Login</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Travel Guide | All Rights Reserved</p>
+  </footer>
+
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", function(event) {
+      event.preventDefault(); // Prevent default form submission
+
+      const enteredUsername = document.getElementById("username").value;
+      const enteredPassword = document.getElementById("password").value;
+
+      const storedUsername = localStorage.getItem("registeredUsername");
+      const storedPassword = localStorage.getItem("registeredPassword");
+
+      if (enteredUsername === storedUsername && enteredPassword === storedPassword) {
+        alert("Login successful!");
+        window.location.href = "index.html"; // Redirecting to the homepage after successful login
+      } else {
+        alert("Invalid username or password. Please try again.");
+      }
+    });
+  </script>
+
+</body>
+</html>

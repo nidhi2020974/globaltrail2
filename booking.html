@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Your Trip</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        let selectedDestination = '';
+        let selectedPrice = 0;
+
+        function getDestinationFromURL() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const destination = urlParams.get('destination');
+            selectedDestination = destination;
+
+            const destinationNameElems = document.querySelectorAll('#destination-name');
+            const destinationImage = document.getElementById('destination-image');
+            const destinationDescription = document.getElementById('destination-description');
+            const ticketPrice = document.getElementById('ticket-price');
+
+            const prices = {
+                'paris': 1200,
+                'london': 1500,
+                'newyork': 1400,
+                'tokyo': 1300
+            };
+
+            switch (destination) {
+                case 'paris':
+                    updateDestination('Paris', 'images/destination1.jpg', 'Enjoy the beauty of the Eiffel Tower, the Louvre, and more!', prices.paris);
+                    break;
+                case 'london':
+                    updateDestination('London', 'images/london.jpg', 'Explore Big Ben, Buckingham Palace, and the Tower of London!', prices.london);
+                    break;
+                case 'newyork':
+                    updateDestination('New York', 'images/destination2.jpeg', 'Discover the Empire State Building, Central Park, and Times Square!', prices.newyork);
+                    break;
+                case 'tokyo':
+                    updateDestination('Tokyo', 'images/destination3.jpeg', 'Experience Tokyo Tower, vibrant culture, and beautiful temples!', prices.tokyo);
+                    break;
+                default:
+                    updateDestination('Unknown Destination', 'images/default.jpg', 'Please choose a valid destination!', 0);
+            }
+        }
+
+        function updateDestination(name, imageSrc, description, price) {
+            selectedPrice = price;
+
+            document.querySelectorAll('#destination-name').forEach(elem => elem.textContent = name);
+            document.getElementById('destination-image').src = imageSrc;
+            document.getElementById('destination-description').textContent = description;
+            document.getElementById('ticket-price').textContent = `$${price}`;
+        }
+
+        function updateTotalCost() {
+            const numTickets = parseInt(document.getElementById('tickets').value) || 0;
+            const total = numTickets * selectedPrice;
+            document.getElementById('totalCost').value = `$${total}`;
+        }
+
+        function initializePage() {
+            getDestinationFromURL();
+            updateTotalCost(); // Initial total cost setup
+        }
+
+        // Show confirmation on form submission
+        function handleFormSubmit(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const tickets = parseInt(document.getElementById('tickets').value);
+            const total = tickets * selectedPrice;
+
+            alert(`Thank you, ${name}!\n\nYou have booked ${tickets} ticket(s) to ${selectedDestination.toUpperCase()}.\nTotal Cost: $${total}`);
+
+            // Optionally submit the form via fetch() or XMLHttpRequest here.
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initializePage();
+
+            document.getElementById('tickets').addEventListener('input', updateTotalCost);
+            document.getElementById('booking-form').addEventListener('submit', handleFormSubmit);
+        });
+    </script>
+</head>
+<body>
+
+    <header>
+        <h1>Book Your Trip to <span id="destination-name"></span></h1>
+    </header>
+
+    <section class="booking-details">
+        <h2>Booking for <span id="destination-name"></span></h2>
+        <img id="destination-image" src="" alt="Destination Image" width="100%">
+        <p id="destination-description"></p>
+        <p>Ticket Price: <span id="ticket-price">$0</span></p>
+
+        <form action="/submit-booking" method="POST" id="booking-form">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" required>
+
+            <label for="date">Booking Date:</label>
+            <input type="date" id="date" name="date" required>
+
+            <label for="tickets">Number of Tickets:</label>
+            <input type="number" id="tickets" name="tickets" value="1" min="1" required>
+
+            <label for="totalCost">Total Cost:</label>
+            <input type="text" id="totalCost" name="totalCost" readonly />
+
+            <button type="submit">Confirm Booking</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Travel Agency</p>
+    </footer>
+
+</body>
+</html>

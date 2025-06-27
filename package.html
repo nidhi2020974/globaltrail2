@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Packages</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Basic modal styling for demo */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.6);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 5% auto;
+            padding: 20px;
+            width: 90%;
+            max-width: 600px;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .close {
+            color: #aaa;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: #000;
+        }
+
+        #booking-confirmation {
+            background-color: #e6ffe6;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 8px;
+            border: 1px solid #b3ffb3;
+            animation: fadeIn 0.6s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <h1>Travel Guide</h1>
+        <div>
+            <a href="index.html">Home</a>
+            <a href="package.html">Packages</a>
+            <a href="contact.html">Contact</a>
+            <a href="login.html">Login</a>
+            <a href="register.html">Register</a>
+        </div>
+    </nav>
+
+    <!-- Packages Section -->
+    <section class="packages">
+        <h2>Our Travel Packages</h2>
+        <div class="package-container">
+            <div class="package" data-package="Beach Vacation" data-price="1200">
+                <img src="images/package1.jpeg" alt="Package 1">
+                <h3>Beach Vacation</h3>
+                <p>Enjoy a relaxing beach holiday with scenic views.</p>
+                <p class="package-price">Price: $1200</p>
+                <button class="book-now" onclick="openBookingModal('Beach Vacation', 1200)">Book Now</button>
+            </div>
+
+            <div class="package" data-package="Mountain Trek" data-price="1500">
+                <img src="images/package2.jpeg" alt="Package 2">
+                <h3>Mountain Trek</h3>
+                <p>Adventure awaits you in the stunning mountains.</p>
+                <p class="package-price">Price: $1500</p>
+                <button class="book-now" onclick="openBookingModal('Mountain Trek', 1500)">Book Now</button>
+            </div>
+
+            <div class="package" data-package="City Tour" data-price="1400">
+                <img src="images/package3.jpeg" alt="Package 3">
+                <h3>City Tour</h3>
+                <p>Explore famous landmarks and cultural sites.</p>
+                <p class="package-price">Price: $1400</p>
+                <button class="book-now" onclick="openBookingModal('City Tour', 1400)">Book Now</button>
+            </div>
+
+            <div class="package" data-package="Desert Safari" data-price="1300">
+                <img src="images/package4.jpeg" alt="Package 4">
+                <h3>Desert Safari</h3>
+                <p>Experience the thrill of a desert safari adventure.</p>
+                <p class="package-price">Price: $1300</p>
+                <button class="book-now" onclick="openBookingModal('Desert Safari', 1300)">Book Now</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Modal -->
+    <div id="booking-modal" class="modal">
+        <div class="modal-content">
+            <span id="close-booking" class="close">&times;</span>
+            <h2>Book Your Package</h2>
+            <form id="booking-form" autocomplete="off">
+                <input type="hidden" id="package-name" name="package-name">
+                <input type="hidden" id="package-price" name="package-price">
+
+                <label for="user-name">Full Name:</label>
+                <input type="text" id="user-name" name="name" required>
+
+                <label for="user-email">Email:</label>
+                <input type="email" id="user-email" name="email" required>
+
+                <label for="user-phone">Phone Number:</label>
+                <input type="tel" id="user-phone" name="phone" required>
+
+                <label for="user-message">Message (Optional):</label>
+                <textarea id="user-message" name="message"></textarea>
+
+                <p id="total-cost-text">Total Cost: $<span id="total-cost"></span></p>
+                <input type="submit" value="Confirm Booking">
+            </form>
+
+            <!-- Booking Confirmation -->
+            <div id="booking-confirmation" style="display: none;">
+                <h3>Booking Confirmed!</h3>
+                <p>Your booking for <span id="confirmation-package"></span> has been confirmed!</p>
+                <h4>Booking Details:</h4>
+                <ul>
+                    <li><strong>Name:</strong> <span id="confirmation-name"></span></li>
+                    <li><strong>Email:</strong> <span id="confirmation-email"></span></li>
+                    <li><strong>Phone:</strong> <span id="confirmation-phone"></span></li>
+                    <li><strong>Message:</strong> <span id="confirmation-message"></span></li>
+                    <li><strong>Total Cost:</strong> $<span id="confirmation-cost"></span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Tourism Guide System. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const bookingModal = document.getElementById('booking-modal');
+        const bookingForm = document.getElementById('booking-form');
+        const confirmationSection = document.getElementById('booking-confirmation');
+
+        function openBookingModal(packageName, packagePrice) {
+            document.getElementById('package-name').value = packageName;
+            document.getElementById('package-price').value = packagePrice;
+            document.getElementById('confirmation-package').textContent = packageName;
+            document.getElementById('total-cost').textContent = packagePrice;
+            
+            bookingForm.style.display = 'block';
+            confirmationSection.style.display = 'none';
+            bookingForm.reset(); // clear previous form data
+            bookingModal.style.display = 'block';
+        }
+
+        document.getElementById('close-booking').addEventListener('click', () => {
+            bookingModal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === bookingModal) bookingModal.style.display = 'none';
+        });
+
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') bookingModal.style.display = 'none';
+        });
+
+        bookingForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const name = document.getElementById('user-name').value;
+            const email = document.getElementById('user-email').value;
+            const phone = document.getElementById('user-phone').value;
+            const message = document.getElementById('user-message').value;
+            const packageName = document.getElementById('package-name').value;
+            const packagePrice = document.getElementById('package-price').value;
+
+            document.getElementById('confirmation-name').textContent = name;
+            document.getElementById('confirmation-email').textContent = email;
+            document.getElementById('confirmation-phone').textContent = phone;
+            document.getElementById('confirmation-message').textContent = message || 'No message provided';
+            document.getElementById('confirmation-cost').textContent = packagePrice;
+
+            bookingForm.style.display = 'none';
+            confirmationSection.style.display = 'block';
+        });
+    </script>
+</body>
+</html>

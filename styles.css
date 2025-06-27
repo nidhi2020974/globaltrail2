@@ -1,0 +1,380 @@
+/* Global Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f1f9; /* Light pinkish background */
+    color: #333;
+}
+
+/* Navbar Styles */
+nav {
+    background-color: #ff7db5; /* Soft pink */
+    color: white;
+    padding: 15px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+nav h1 {
+    font-size: 30px;
+    font-weight: 700;
+    margin: 0;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 20px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: #0a74da; /* Soft blue */
+}
+
+/* Header Section */
+header {
+    background-color: #ffadd5; /* Light pastel pink */
+    color: #333;
+    padding: 60px 20px;
+    text-align: center;
+    border-bottom: 5px solid #0a74da; /* Blue line */
+}
+
+header h2 {
+    font-size: 36px;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+header p {
+    font-size: 20px;
+    font-weight: 400;
+    color: #555;
+}
+
+/* Buttons */
+button {
+    background-color: #0a74da; /* Soft blue */
+    color: white;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    cursor: pointer;
+    margin: 10px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #ff7db5; /* Soft pink */
+}
+
+/* Destination Cards */
+#destinations-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    padding: 40px 20px;
+    justify-items: center;
+}
+
+.destination-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    max-width: 300px;
+    text-align: center;
+}
+
+.destination-card:hover {
+    transform: scale(1.05);
+}
+
+.destination-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.destination-card h3 {
+    background-color: #0a74da; /* Soft blue */
+    color: white;
+    font-size: 24px;
+    padding: 15px;
+}
+
+/* Forms Styling */
+form {
+    background-color: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 30px auto;
+    max-width: 400px;
+}
+
+form input,
+form textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 15px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+form button {
+    background-color: #0a74da; /* Soft blue */
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    width: 100%;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #ff7db5; /* Soft pink */
+}
+
+/* Footer Styling */
+footer {
+    background-color: #ff7db5;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    width: 100%;
+}
+
+/* Package Section Styling */
+.packages {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.packages h2 {
+    font-size: 36px;
+    color: #ff3366;
+    margin-bottom: 30px;
+}
+
+.package-container {
+    display: flex;
+    justify-content: space-between; /* Horizontally align the cards */
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 0 20px;
+}
+
+.package {
+    width: 100%;
+    max-width: 300px; /* Controls the max width of each card */
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #fff;
+    margin-bottom: 20px;
+}
+
+.package img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 2px solid #ff3366;
+}
+
+.package h3 {
+    font-size: 24px;
+    color: #333;
+    padding: 10px;
+}
+
+.package p {
+    font-size: 16px;
+    color: #555;
+    padding: 0 15px 10px;
+}
+
+.package .book-now {
+    background-color: #ff3366;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.package .book-now:hover {
+    background-color: #e02c59;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: white;
+    margin: 5% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 50%;
+    text-align: center;
+}
+
+.close {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+}
+
+input[type="submit"] {
+    background-color: #ff3366;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+input[type="submit"]:hover {
+    background-color: #e02c59;
+}
+
+#booking-confirmation {
+    font-size: 18px;
+    color: green;
+}
+
+#booking-confirmation p {
+    margin: 20px 0;
+}
+/* Homepage Image Section */
+#destinations-list {
+    display: flex; /* Align items horizontally */
+    justify-content: space-between; /* Space out the items evenly */
+    flex-wrap: wrap; /* Ensure items wrap on smaller screens */
+    gap: 20px; /* Space between the images */
+    padding: 40px 20px;
+    justify-items: center;
+}
+
+.destination-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    max-width: 300px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.destination-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.destination-card h3 {
+    background-color: #0a74da; /* Soft blue */
+    color: white;
+    font-size: 24px;
+    padding: 15px;
+}
+/* Popular Destinations Section */
+.popular-destinations {
+    text-align: center;
+    margin: 50px 0;
+}
+
+.popular-destinations h2 {
+    font-size: 36px;
+    color: #ff3366; /* Pink color */
+    margin-bottom: 30px;
+}
+
+.destination-container {
+    display: flex;
+    justify-content: space-between; /* Align images horizontally with space between them */
+    gap: 20px; /* Space between the images */
+    flex-wrap: wrap; /* Allow the images to wrap to the next line on smaller screens */
+    margin-top: 20px;
+    padding: 0 20px;
+}
+
+.destination {
+    width: 220px; /* Control the width of each image */
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+.destination a {
+    text-decoration: none; /* Remove default link styles */
+    color: inherit; /* Make sure the text color is inherited from parent */
+}
+
+.destination img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-bottom: 2px solid #ff3366; /* Pink border */
+}
+
+.destination p {
+    padding: 10px;
+    font-size: 18px;
+    color: #444;
+    font-weight: bold;
+    background-color: #f8f8f8;
+}
+#destination-image {
+    max-width: 400px;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+

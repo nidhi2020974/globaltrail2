@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Guide</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <h1>Travel Guide</h1>
+        <div>
+            <a href="index.html">Home</a>
+            <a href="package.html">Packages</a>
+            <a href="contact.html">Contact</a>
+            <a href="login.html">Login</a>
+            <a href="register.html">Register</a>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <header>
+        <h2>Explore the World with Us</h2>
+        <p>Find your next dream vacation destination!</p>
+    </header>
+
+    <section class="popular-destinations">
+        <h2>Popular Destinations</h2>
+        <div class="destination-container">
+            <div class="destination">
+                <a href="booking.html?destination=paris">
+                    <img id="destination-image" src="images/destination1.jpg" alt="Paris">
+                    <p>Paris</p>
+                </a>
+            </div>
+            <div class="destination">
+                <a href="booking.html?destination=london">
+                    <img id="destination-image" src="images/london.jpg" alt="London">
+                    <p>London</p>
+                </a>
+            </div>
+            <div class="destination">
+                <a href="booking.html?destination=newyork">
+                    <img id="destination-image" src="images/destination2.jpeg" alt="New York">
+                    <p>New York</p>
+                </a>
+            </div>
+            <div class="destination">
+                <a href="booking.html?destination=tokyo">
+                    <img id="destination-image" src="images/destination3.jpeg" alt="Tokyo">
+                    <p>Tokyo</p>
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    
+    
+   <!-- Login Modal -->
+<div id="loginModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('loginModal')">&times;</span>
+      <h2>Login</h2>
+      <form onsubmit="handleLogin(event)">
+        <input type="email" placeholder="Email" required />
+        <input type="password" placeholder="Password" required />
+        <input type="submit" value="Login" />
+      </form>
+      <p>Don't have an account? <a href="#" onclick="switchToRegister()">Register here</a></p>
+    </div>
+  </div>
+  
+  <!-- Register Modal -->
+  <div id="registerModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('registerModal')">&times;</span>
+      <h2>Register</h2>
+      <form onsubmit="handleRegister(event)">
+        <input type="text" placeholder="Name" required />
+        <input type="email" placeholder="Email" required />
+        <input type="password" placeholder="Password" required />
+        <input type="submit" value="Register" />
+      </form>
+      <p>Already have an account? <a href="#" onclick="switchToLogin()">Login here</a></p>
+    </div>
+  </div>
+  
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Travel Guide | All Rights Reserved</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        function openModal(id) {
+          document.getElementById(id).style.display = 'block';
+        }
+      
+        function closeModal(id) {
+          document.getElementById(id).style.display = 'none';
+        }
+      
+        function switchToRegister() {
+          closeModal('loginModal');
+          openModal('registerModal');
+        }
+      
+        function switchToLogin() {
+          closeModal('registerModal');
+          openModal('loginModal');
+        }
+      
+        function handleLogin(e) {
+          e.preventDefault();
+          alert("Login successful! (This is a placeholder)");
+          closeModal('loginModal');
+        }
+      
+        function handleRegister(e) {
+          e.preventDefault();
+          alert("Registration successful! (This is a placeholder)");
+          closeModal('registerModal');
+        }
+      
+        // Optional: close modal when clicking outside
+        window.onclick = function(event) {
+          if (event.target.classList.contains('modal')) {
+            event.target.style.display = "none";
+          }
+        };
+      </script>
+      
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!-- register.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <h1>Travel Guide</h1>
+    <div>
+      <a href="index.html">Home</a>
+      <a href="package.html">Packages</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+
+  <!-- Header Section -->
+  <header>
+    <h2>Create a New Account</h2>
+  </header>
+
+  <!-- Registration Form -->
+  <section>
+    <form id="registerForm">
+      <input type="text" id="registerUsername" placeholder="Username" required><br><br>
+      <input type="email" id="registerEmail" placeholder="Email" required><br><br>
+      <input type="password" id="registerPassword" placeholder="Password" required><br><br>
+      <button type="submit">Register</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Travel Guide | All Rights Reserved</p>
+  </footer>
+
+  <script>
+    document.getElementById("registerForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const username = document.getElementById("registerUsername").value;
+      const email = document.getElementById("registerEmail").value;
+      const password = document.getElementById("registerPassword").value;
+
+      // Save credentials to localStorage (for demo purposes only)
+      localStorage.setItem("registeredUsername", username);
+      localStorage.setItem("registeredEmail", email);
+      localStorage.setItem("registeredPassword", password);
+
+      alert("Registration successful! You can now log in.");
+      window.location.href = "login.html";
+    });
+  </script>
+
+</body>
+</html>
